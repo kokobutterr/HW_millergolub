@@ -88,23 +88,29 @@ hist(replicate_ten_thousand)
 ### 2_c: Use a another for loop that will print out plots for sample sizes of 5, 10, and 20 observations (instead of just 5).
 
 ``` {r 613_hw2_2c}
-Ten_Thousand_Five <- c()
-Ten_Thousand_Ten <- c()
-Ten_Thousand_Twenty <- c()
+Ten_Thousand_Five <- numeric(10000)
+Ten_Thousand_Ten <- numeric(10000)
+Ten_Thousand_Twenty <- numeric(10000)
 
 for (i in 1:10000){
-  FiveObservations <- mean(rexp(5, rate = 1))
-  TenObservations <- mean(rexp(10, rate = 1))
-  TwentyObservations <- mean(rexp(20, rate = 1))
+  Ten_Thousand_Five[i] <- mean(rexp(5, rate = 1))
+  Ten_Thousand_Ten[i] <- mean(rexp(10, rate = 1))
+  Ten_Thousand_Twenty[i] <- mean(rexp(20, rate = 1))
+
+par(mfrow = c(1, 3))  # Set up the plotting window for three plots side by side
+
   
-  Ten_Thousand_Five <- append(Ten_Thousand_Five, mean(FiveObservations))
-  Ten_Thousand_Ten <- append(Ten_Thousand_Ten, mean(TenObservations))
-  Ten_Thousand_Twenty <- append(Ten_Thousand_Twenty, mean(TwentyObservations))
+hist(Ten_Thousand_Five, main = "Sample Size = 5", xlab = "Means", col = "lightblue")
+hist(Ten_Thousand_Ten, main = "Sample Size = 10", xlab = "Means", col = "lightgreen")
+hist(Ten_Thousand_Twenty, main = "Sample Size = 20", xlab = "Means", col = "lightcoral")
 }
 
 hist(Ten_Thousand_Five)
 hist(Ten_Thousand_Ten)
 hist(Ten_Thousand_Twenty)
+
+# Reset the plotting layout
+par(mfrow = c(1, 1))
 ```
 
 ## Problem 3: Use and show R coding to calculate the “standard deviation” for each variable of the data table mtcars using the “Special For Loop Method”.
